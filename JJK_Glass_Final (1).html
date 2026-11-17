@@ -1,0 +1,889 @@
+<html lang="uk"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JJK Top All — Ultimate Glass High Quality</title>
+    <link rel="icon" href="https://img.icons8.com/?size=100&amp;id=84936&amp;format=png&amp;color=000000" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-hover: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --card-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        body.light-mode {
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-hover: rgba(255, 255, 255, 0.8);
+            --text-main: #1f2120;
+            --card-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1f2120;
+            color: var(--text-main);
+            padding: 40px 20px;
+            position: relative; 
+        }
+
+        body::before {
+            content: "";
+            position: absolute; 
+            top: 0; left: 0;
+            width: 100%; 
+            height: 100%; 
+            /* Оптимальне налаштування для фону */
+            background: url('https://i.pinimg.com/736x/30/e9/c1/30e9c1319a9d792bbe55f46eda6e27fc.jpg') top center repeat;
+            background-size: 100 auto; /* Ширина на весь екран, висота підлаштовується (зберігає якість) */
+            z-index: -1;
+            filter: brightness(0.7); /* Трохи світліше ніж було */
+        }
+        
+        body.light-mode::before {
+            filter: brightness(1.2) opacity(0.8);
+             z-index: -1;
+            background: url('https://i.pinimg.com/736x/0c/43/e5/0c43e5641df229ff2840bbf2498015c0.jpg') top center repeat;
+            background-size: 100 auto; /* Ширина на весь екран, висота підлаштовується (зберігає якість) */
+            content: "";
+            position: absolute; 
+            top: 0; left: 0;
+            width: 100%; 
+            height: 100%; 
+        }
+
+        .header-container { 
+            display: flex; flex-direction: column; align-items: center; 
+            margin-bottom: 60px; gap: 20px; z-index: 2;
+        }
+        
+        .header-pill {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: flex; align-items: center;
+            padding: 15px 20px 15px 40px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            gap: 25px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .header-pill h1 {
+            color: var(--text-main); font-size: 1.2rem; 
+            letter-spacing: 4px; font-weight: 800; text-transform: uppercase; margin: 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.05); 
+            color: var(--text-main); 
+            border: 1px solid var(--glass-border);
+            padding: 10px 24px; border-radius: 12px;
+            font-size: 0.8rem; font-weight: 600; font-family: 'Poppins', sans-serif;
+            cursor: pointer; text-transform: uppercase; transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover { 
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .export-btn { background: rgba(255, 255, 255, 0.15); font-weight: 800; }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 30px; width: 100%; max-width: 1200px; z-index: 1;
+        }
+
+        @media (max-width: 1050px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+
+        .card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            cursor: grab; transition: all 0.4s ease;
+            position: relative;
+            display: flex; flex-direction: column;
+        }
+
+        .card:hover { 
+            background: var(--glass-hover);
+            transform: translateY(-8px); 
+            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+        }
+
+        .rank-badge {
+            position: absolute; top: 15px; left: 15px;
+            background: rgba(0, 0, 0, 0.7); color: #fff;
+            padding: 5px 12px; border-radius: 10px;
+            font-size: 0.8rem; font-weight: 800; z-index: 5;
+            backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .image-box { 
+            width: 100%; height: 250px; 
+            background-color: transparent; 
+            overflow: hidden;
+            border-bottom: 1px solid var(--glass-border);
+            position: relative;
+        }
+        
+        /* --- ГОЛОВНІ ЗМІНИ ДЛЯ ЯКОСТІ --- */
+        .image-box img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            
+            /* Чіткіші налаштування */
+            filter: grayscale(100%); /* Прибрав brightness, щоб не було тьмяно */
+            opacity: 0.8; /* Збільшив прозорість, щоб було видно деталі */
+            transition: all 0.4s ease-out;
+            
+            /* Прибрав mix-blend-mode, який робив картинку "брудною" */
+            mix-blend-mode: normal; 
+            
+            /* Спроба покращити різкість */
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .card:hover img { 
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.05); 
+        }
+
+        .card-footer { padding: 20px; text-align: center; }
+
+        .card-footer h3 { 
+            margin: 0; font-size: 1rem; letter-spacing: 1px; 
+            font-weight: 600; text-transform: uppercase; color: var(--text-main);
+            opacity: 0.9; transition: opacity 0.3s;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Тінь для тексту для читабельності */
+        }
+        
+        .card:hover .card-footer h3 { opacity: 1; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
+
+        .modal {
+            display: none; position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(10px); z-index: 1000;
+            justify-content: center; align-items: center;
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 20, 0.9);
+            padding: 50px; max-width: 600px; width: 90%; border-radius: 30px;
+            text-align: center; color: white;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        body.light-mode .modal-content { background: rgba(255, 255, 255, 0.95); color: #000; }
+
+        .modal-content h2 { margin-bottom: 20px; font-size: 2rem; font-weight: 800; text-transform: uppercase; }
+        .modal-content p { text-align: left; line-height: 1.8; font-size: 1rem; opacity: 0.9; margin-bottom: 40px; font-weight: 300; }
+
+        .btn-close { 
+            cursor: pointer; padding: 12px 40px; background: white; color: black; 
+            border-radius: 12px; font-weight: 800; text-transform: uppercase; font-size: 0.9rem;
+            transition: transform 0.2s; display: inline-block;
+        }
+        body.light-mode .btn-close { background: black; color: white; }
+        .btn-close:hover { transform: scale(1.05); }
+        
+        .sortable-ghost { opacity: 0.2; }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <div class="header-container">
+        <div class="header-pill">
+            <h1>Top All JJK</h1>
+            <button class="btn night-mode-btn" onclick="toggleDarkMode()">Theme Switch</button>
+        </div>
+        <button class="btn export-btn" onclick="exportToFile()">Зберегти для пересилання</button>
+    </div>
+
+    <div class="grid" id="rankingGrid"><div class="card" data-id="yuji">
+                    <div class="rank-badge">#1</div>
+                    <div class="image-box"><img src="https://i.ytimg.com/vi/JlPqvY2joUM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&amp;rs=AOn4CLBzGvxGEgazwsM8r2qoV2XzvaR9WA" alt="Yuji Itadori" style=""></div>
+                    <div class="card-footer"><h3>Yuji Itadori</h3></div>
+                </div><div class="card" data-id="gojo">
+                    <div class="rank-badge">#2</div>
+                    <div class="image-box"><img src="https://preview.redd.it/was-satoru-gojos-ultimate-goal-to-be-both-the-strongest-v0-dpzy86dhb3he1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=505f0d28689ceb9b070a8db2dc0906458a55fb20" alt="Satoru Gojo" style=""></div>
+                    <div class="card-footer"><h3>Satoru Gojo</h3></div>
+                </div><div class="card" data-id="sukuna">
+                    <div class="rank-badge">#3</div>
+                    <div class="image-box"><img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/18/15151sukuna29.jpg/revision/latest?cb=20250520125531&amp;path-prefix=ru" alt="Ryomen Sukuna" style="object-position: center 20%;"></div>
+                    <div class="card-footer"><h3>Ryomen Sukuna</h3></div>
+                </div><div class="card" data-id="dabura">
+                    <div class="rank-badge">#4</div>
+                    <div class="image-box"><img src="https://preview.redd.it/do-you-think-dabura-will-carry-crossover-match-up-for-jjk-v0-3fhron8nue7g1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=aeeccd3e72e446afbd956c15251272fb2741f182" alt="Dabura" style=""></div>
+                    <div class="card-footer"><h3>Dabura</h3></div>
+                </div><div class="card" data-id="yuta">
+                    <div class="rank-badge">#5</div>
+                    <div class="image-box"><img src="https://static0.colliderimages.com/wordpress/wp-content/uploads/2023/11/jujutsu-kaisen-season-1-yuta.jpg?w=1200&amp;h=675&amp;fit=crop" alt="Yuta Okkotsu" style=""></div>
+                    <div class="card-footer"><h3>Yuta Okkotsu</h3></div>
+                </div><div class="card" data-id="mahoraga">
+                    <div class="rank-badge">#6</div>
+                    <div class="image-box"><img src="https://i.redd.it/e99r17yyf31c1.jpg" alt="Mahoraga" style=""></div>
+                    <div class="card-footer"><h3>Mahoraga</h3></div>
+                </div><div class="card" data-id="kashimo">
+                    <div class="rank-badge">#7</div>
+                    <div class="image-box"><img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/09/kashimo-cursed-technique-genju-kohasaku-jjk.jpg?w=1600&amp;h=900&amp;fit=crop" alt="Hajime Kashimo" style=""></div>
+                    <div class="card-footer"><h3>Hajime Kashimo</h3></div>
+                </div><div class="card" data-id="toji">
+                    <div class="rank-badge">#8</div>
+                    <div class="image-box"><img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/1a/Toji_caught_in_Kuchisake-Onna%27s_domain_%28Anime%29.png/revision/latest?cb=20230727204527" alt="Toji Fushiguro" style=""></div>
+                    <div class="card-footer"><h3>Toji Fushiguro</h3></div>
+                </div><div class="card" data-id="hakari">
+                    <div class="rank-badge">#9</div>
+                    <div class="image-box"><img src="https://preview.redd.it/why-does-this-sub-think-hakari-is-so-powerful-v0-ey8o9684emod1.jpeg?auto=webp&amp;s=c8a70003bd53ffaadf819a90d43926169844d318" alt="Kinji Hakari" style="object-position: center 65%;"></div>
+                    <div class="card-footer"><h3>Kinji Hakari</h3></div>
+                </div><div class="card" data-id="kenjaku">
+                    <div class="rank-badge">#10</div>
+                    <div class="image-box"><img src="https://preview.redd.it/lmao-kenjaku-got-backshots-from-jin-also-official-art-of-v0-acyzobhrr5cg1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=8ed4412ec70aaac5ac8477cadab9b58a80ef2008" alt="Kenjaku" style=""></div>
+                    <div class="card-footer"><h3>Kenjaku</h3></div>
+                </div><div class="card" data-id="hana">
+                    <div class="rank-badge">#11</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/1200x/e3/6f/9f/e36f9f03481aa90abe9178c07d3e712d.jpg" alt="Hana Kurusu" style=""></div>
+                    <div class="card-footer"><h3>Hana Kurusu</h3></div>
+                </div><div class="card" data-id="higuruma">
+                    <div class="rank-badge">#12</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/736x/d7/0e/2d/d70e2d37193bdbcd558d15961f0ff37a.jpg" alt="Hiromi Higuruma" style=""></div>
+                    <div class="card-footer"><h3>Hiromi Higuruma</h3></div>
+                </div><div class="card" data-id="yorozu">
+                    <div class="rank-badge">#13</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/1200x/22/d7/6b/22d76be70357d89c427ce58fe44be6f7.jpg" alt="Yorozu" style="object-position: center 35%;"></div>
+                    <div class="card-footer"><h3>Yorozu</h3></div>
+                </div><div class="card" data-id="yuki">
+                    <div class="rank-badge">#14</div>
+                    <div class="image-box"><img src="https://staticg.sportskeeda.com/editor/2023/12/6b724-17035046106825-1920.jpg?w=640" alt="Yuki Tsukumo" style="object-position: center 0%;"></div>
+                    <div class="card-footer"><h3>Yuki Tsukumo</h3></div>
+                </div><div class="card" data-id="maki">
+                    <div class="rank-badge">#15</div>
+                    <div class="image-box"><img src="https://is.zobj.net/image-server/v1/images?r=Dcc6vOYytcG5K_SLzPMLjx0hVjVTKwo2xHLcbFGkXbBPz4lCxuhHzQjC3NGt7XFRsVbRJVCDIrSZoTmzPzEx4qtN_Ul5gc_Oxmcg-tq3wuGL8jgerITSTu16ovlvia_lASQMG8uVbziDKYpJA-4NGSLUNKCCmd_xDv-1l16QiPxfvMmAa8KS7jOgxnTfh6ASf3Wnr0FxVxwNDVvDxUkmtqeHFjWCRfEZmeSKT7K1eMApxcT2u_zssZHMu6E" alt="Maki Zenin" style="object-position: center 20%;"></div>
+                    <div class="card-footer"><h3>Maki Zenin</h3></div>
+                </div><div class="card" data-id="naoya_cursed">
+                    <div class="rank-badge">#16</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/736x/54/76/40/5476400eb08c3467d7627accda9586ec.jpg" alt="Naoya Zenin (Cursed)" style=""></div>
+                    <div class="card-footer"><h3>Naoya Zenin (Cursed)</h3></div>
+                </div><div class="card" data-id="ryu">
+                    <div class="rank-badge">#17</div>
+                    <div class="image-box"><img src="https://i.redd.it/random-weird-match-up-hanami-todo-vs-ryu-ishigori-v0-y622jgnm8ftc1.jpg?width=736&amp;format=pjpg&amp;auto=webp&amp;s=e9384877322b1b6722a8cff49493fbee23d775dd" alt="Ryu Ishigori" style="object-position: center 25%;"></div>
+                    <div class="card-footer"><h3>Ryu Ishigori</h3></div>
+                </div><div class="card" data-id="dhruv">
+                    <div class="rank-badge">#18</div>
+                    <div class="image-box"><img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/16/Dhruv_Lakdawalla.png/revision/latest?cb=20220221062845" alt="Dhruv Lakdawalla" style="object-position: center 35%;"></div>
+                    <div class="card-footer"><h3>Dhruv Lakdawalla</h3></div>
+                </div><div class="card" data-id="geto">
+                    <div class="rank-badge">#19</div>
+                    <div class="image-box"><img src="https://f4.bcbits.com/img/a4182498659_16.jpg" alt="Suguru Geto" style="object-position: center 0%;"></div>
+                    <div class="card-footer"><h3>Suguru Geto</h3></div>
+                </div><div class="card" data-id="jogo">
+                    <div class="rank-badge">#20</div>
+                    <div class="image-box"><img src="https://i.ytimg.com/vi/NHjS-jnfa7s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&amp;rs=AOn4CLBzGvxGEgazwsM8r2qoV2XzvaR9WA" alt="Jogo" style=""></div>
+                    <div class="card-footer"><h3>Jogo</h3></div>
+                </div><div class="card" data-id="choso">
+                    <div class="rank-badge">#21</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/1200x/01/4d/7b/014d7bed8cbbb430a6afb9e44833cc90.jpg" alt="Choso" style="object-position: center 25%;"></div>
+                    <div class="card-footer"><h3>Choso</h3></div>
+                </div><div class="card" data-id="takako">
+                    <div class="rank-badge">#22</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/1200x/a2/11/c1/a211c1705df5d58c975dec648282808d.jpg" alt="Takako Uro" style="object-position: center 45%;"></div>
+                    <div class="card-footer"><h3>Takako Uro</h3></div>
+                </div><div class="card" data-id="mahito">
+                    <div class="rank-badge">#23</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/1200x/ea/a6/f2/eaa6f2465ac7c26dbcbeeddb9be4a3aa.jpg" alt="Mahito" style="width: 130%; height: 130%; margin-left: -15%; margin-top: -15%; object-fit: cover;"></div>
+                    <div class="card-footer"><h3>Mahito</h3></div>
+                </div><div class="card" data-id="naoya_human">
+                    <div class="rank-badge">#24</div>
+                    <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMNJg8e-8vOHRPsPTueR7emZgQhH2znM6Qlgp7HiirJBkrcDXZphqrqeVO&amp;s=10" alt="Naoya Zenin (Human)" style="object-position: center 15%;"></div>
+                    <div class="card-footer"><h3>Naoya Zenin (Human)</h3></div>
+                </div><div class="card" data-id="miguel">
+                    <div class="rank-badge">#25</div>
+                    <div class="image-box"><img src="https://i.redd.it/9egwga9huz0c1.jpg" alt="Miguel" style="object-position: center 20%;"></div>
+                    <div class="card-footer"><h3>Miguel</h3></div>
+                </div><div class="card" data-id="dagon">
+                    <div class="rank-badge">#26</div>
+                    <div class="image-box"><img src="https://i.redd.it/dagon-will-be-voiced-by-kenta-miyake-v0-rkwlzyja9hwb1.jpg?width=1291&amp;format=pjpg&amp;auto=webp&amp;s=c573d26ce763ca760bba29ea038ccfd79fb2ca2c" alt="Dagon" style="object-position: center 15%;"></div>
+                    <div class="card-footer"><h3>Dagon</h3></div>
+                </div><div class="card" data-id="todo">
+                    <div class="rank-badge">#27</div>
+                    <div class="image-box"><img src="https://www.dexerto.com/cdn-image/wp-content/uploads/2023/12/13/jujutsu-kaisen-aoi-todo.jpg?width=1200&amp;quality=60&amp;format=auto" alt="Todo Aoi" style=""></div>
+                    <div class="card-footer"><h3>Todo Aoi</h3></div>
+                </div><div class="card" data-id="hanami">
+                    <div class="rank-badge">#28</div>
+                    <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHUWD2pHaCPEQlu_Xul_CZYeZfrRkzVcgQx7IwPfl3EIODz0KoxG2h_2s&amp;s=10" alt="Hanami" style=""></div>
+                    <div class="card-footer"><h3>Hanami</h3></div>
+                </div><div class="card" data-id="kusakabe">
+                    <div class="rank-badge">#29</div>
+                    <div class="image-box"><img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2024/03/kusakabe-jujutsu-kaisen.jpg?w=1200&amp;h=900&amp;fit=crop" alt="Kusakabe" style=""></div>
+                    <div class="card-footer"><h3>Kusakabe</h3></div>
+                </div><div class="card" data-id="nanami">
+                    <div class="rank-badge">#30</div>
+                    <div class="image-box"><img src="https://static0.srcdn.com/wordpress/wp-content/uploads/2024/02/kento-nanami-3.jpg?w=1200&amp;h=675&amp;fit=crop" alt="Nanami Kento" style=""></div>
+                    <div class="card-footer"><h3>Nanami Kento</h3></div>
+                </div><div class="card" data-id="yuka">
+                    <div class="rank-badge">#31</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/736x/36/31/7a/36317a5e9bcf34eb92acc8bda1822ee7.jpg" alt="Yuka Okkotsu" style="object-position: center 18%;"></div>
+                    <div class="card-footer"><h3>Yuka Okkotsu</h3></div>
+                </div><div class="card" data-id="takaba">
+                    <div class="rank-badge">#32</div>
+                    <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTxM96n3RzYHYkoN8_WZ38dxPhPKY-abhHQsw8ONejxml70Z2xDi9ZbNo&amp;s=10" alt="Takaba Fumihiko" style=""></div>
+                    <div class="card-footer"><h3>Takaba Fumihiko</h3></div>
+                </div><div class="card" data-id="maru_brother">
+                    <div class="rank-badge">#33</div>
+                    <div class="image-box"><img src="https://static.beebom.com/wp-content/uploads/2025/09/maru.jpg?w=1200&amp;quality=75" alt="Maru and Brother" style=""></div>
+                    <div class="card-footer"><h3>Maru and Brother</h3></div>
+                </div><div class="card" data-id="megumi">
+                    <div class="rank-badge">#34</div>
+                    <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYqUMiU2k-t8ZK8DFTC7JT6ySCm3pcfXEElgRhN1ZqP0hGtxPJ7YSmSM&amp;s=10" alt="Megumi Fushiguro" style=""></div>
+                    <div class="card-footer"><h3>Megumi Fushiguro</h3></div>
+                </div><div class="card" data-id="tsurugi">
+                    <div class="rank-badge">#35</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/736x/f2/5c/5f/f25c5f9b7d4f72e287fc6c1fbd8d67c0.jpg" alt="Tsurugi Okkotsu" style=""></div>
+                    <div class="card-footer"><h3>Tsurugi Okkotsu</h3></div>
+                </div><div class="card" data-id="muta">
+                    <div class="rank-badge">#36</div>
+                    <div class="image-box"><img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/10/kokichi-smile.jpg" alt="Kokichi Muta" style=""></div>
+                    <div class="card-footer"><h3>Kokichi Muta</h3></div>
+                </div><div class="card" data-id="reggie">
+                    <div class="rank-badge">#37</div>
+                    <div class="image-box"><img src="https://i.ytimg.com/vi/FLaRut7SeY4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&amp;rs=AOn4CLDZGdV_Wbc-iPVlGrviJ4qSVYzEWw" alt="Reggie Star" style=""></div>
+                    <div class="card-footer"><h3>Reggie Star</h3></div>
+                </div><div class="card" data-id="mei">
+                    <div class="rank-badge">#38</div>
+                    <div class="image-box"><img src="https://static0.srcdn.com/wordpress/wp-content/uploads/2024/02/img_8169.jpeg?q=49&amp;fit=contain&amp;w=1400&amp;h=700&amp;dpr=2" alt="Mei Mei" style=""></div>
+                    <div class="card-footer"><h3>Mei Mei</h3></div>
+                </div><div class="card" data-id="kamo">
+                    <div class="rank-badge">#39</div>
+                    <div class="image-box"><img src="https://fictionhorizon.com/wp-content/uploads/2023/03/unnamed-file.webp" alt="Noritoshi Kamo" style=""></div>
+                    <div class="card-footer"><h3>Noritoshi Kamo</h3></div>
+                </div><div class="card" data-id="yaga">
+                    <div class="rank-badge">#40</div>
+                    <div class="image-box"><img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/9/91/Masamichi_Yaga_and_his_dolls_%28Anime%29.png/revision/latest?cb=20201010033941" alt="Masamichi Yaga" style=""></div>
+                    <div class="card-footer"><h3>Masamichi Yaga</h3></div>
+                </div><div class="card" data-id="gakuganji">
+                    <div class="rank-badge">#41</div>
+                    <div class="image-box"><img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2022/08/4f973-16483006565853-1920_jpg-Cropped.jpg?q=50&amp;fit=crop&amp;w=825&amp;dpr=1." alt="Yoshinobu Gakuganji" style=""></div>
+                    <div class="card-footer"><h3>Yoshinobu Gakuganji</h3></div>
+                </div><div class="card" data-id="charles">
+                    <div class="rank-badge">#42</div>
+                    <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5ymF5PoCqZw3HhlYgrYeLyeozkJCOEpXWQVwsXt1SBVdlOYsWGQ9zpQQP&amp;s=10" alt="Charles Bernard" style=""></div>
+                    <div class="card-footer"><h3>Charles Bernard</h3></div>
+                </div><div class="card" data-id="ino">
+                    <div class="rank-badge">#43</div>
+                    <div class="image-box"><img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/10/2923459325.jpg?q=50&amp;fit=crop&amp;w=825&amp;dpr=1.5" alt="Ino Takuma" style=""></div>
+                    <div class="card-footer"><h3>Ino Takuma</h3></div>
+                </div><div class="card" data-id="nobara">
+                    <div class="rank-badge">#44</div>
+                    <div class="image-box"><img src="https://www.hindustantimes.com/ht-img/img/2023/09/06/550x309/nobara_jujutsu_kaisen_opening_1694000385772_1694000405444.png" alt="Nobara Kugisaki" style=""></div>
+                    <div class="card-footer"><h3>Nobara Kugisaki</h3></div>
+                </div><div class="card" data-id="panda">
+                    <div class="rank-badge">#45</div>
+                    <div class="image-box"><img src="https://wallpapercave.com/wp/wp9415208.jpg" alt="Panda" style=""></div>
+                    <div class="card-footer"><h3>Panda</h3></div>
+                </div><div class="card" data-id="inumaki">
+                    <div class="rank-badge">#46</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/736x/bf/1b/be/bf1bbe1bc0f232b7afe305c06d9fec8e.jpg" alt="Inumaki Toge" style=""></div>
+                    <div class="card-footer"><h3>Inumaki Toge</h3></div>
+                </div><div class="card" data-id="utahime">
+                    <div class="rank-badge">#47</div>
+                    <div class="image-box"><img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2022/02/Utahime-combat-stance.jpg?w=1200&amp;h=628&amp;fit=crop" alt="Utahime Iori" style=""></div>
+                    <div class="card-footer"><h3>Utahime Iori</h3></div>
+                </div><div class="card" data-id="miwa">
+                    <div class="rank-badge">#48</div>
+                    <div class="image-box"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsLVM1nTwSJFatkAp-Jw8ykrHvsn4OSR6l3O48tDVZ-3IZFwpH6btP7I0&amp;s=10" alt="Kasumi Miwa" style=""></div>
+                    <div class="card-footer"><h3>Kasumi Miwa</h3></div>
+                </div><div class="card" data-id="momo">
+                    <div class="rank-badge">#49</div>
+                    <div class="image-box"><img src="https://preview.redd.it/happy-birthday-to-my-girl-momo-nishimiya-v0-8ac76nrq1hbf1.jpeg?width=640&amp;crop=smart&amp;auto=webp&amp;s=1b74cc3c0417e87d75aabefe5a6a95140fa05fca" alt="Momo Nishimiya" style=""></div>
+                    <div class="card-footer"><h3>Momo Nishimiya</h3></div>
+                </div><div class="card" data-id="hazenoki">
+                    <div class="rank-badge">#50</div>
+                    <div class="image-box"><img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/c/c8/Hazenoki_regenerates_his_left_eye.png/revision/latest?cb=20240211155944" alt="Iori Hazenoki" style=""></div>
+                    <div class="card-footer"><h3>Iori Hazenoki</h3></div>
+                </div><div class="card" data-id="shoko">
+                    <div class="rank-badge">#51</div>
+                    <div class="image-box"><img src="https://poggers.com/cdn/shop/articles/7f64580a0c11901281b0e97b782eb100_379da39b-27f3-4aee-847a-ece8cf32b00e_1200x600_crop_center.webp?v=1741278809" alt="Shoko Ieiri" style=""></div>
+                    <div class="card-footer"><h3>Shoko Ieiri</h3></div>
+                </div><div class="card" data-id="shigemo">
+                    <div class="rank-badge">#52</div>
+                    <div class="image-box"><img src="https://cdn.anisearch.de/images/character/screen/97/97781/full/624006.webp" alt="Haruta Shigemo" style=""></div>
+                    <div class="card-footer"><h3>Haruta Shigemo</h3></div>
+                </div><div class="card" data-id="nanako">
+                    <div class="rank-badge">#53</div>
+                    <div class="image-box"><img src="https://i.pinimg.com/736x/d2/97/34/d29734882dedbc9bf55c47694f74e54c.jpg" alt="Nanako Hasaba" style=""></div>
+                    <div class="card-footer"><h3>Nanako Hasaba</h3></div>
+                </div><div class="card" data-id="mimiko">
+                    <div class="rank-badge">#54</div>
+                    <div class="image-box"><img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/e/e3/Mimiko_with_her_doll_%28Anime%29.png/revision/latest?cb=20231105204303" alt="Mimiko Hasaba" style="object-position: center 0%;"></div>
+                    <div class="card-footer"><h3>Mimiko Hasaba</h3></div>
+                </div><div class="card" data-id="mai">
+                    <div class="rank-badge">#55</div>
+                    <div class="image-box"><img src="https://static.wikia.nocookie.net/jujutsu-kaisen/images/a/aa/Mai_taunts_her_rivals_from_Tokyo_%28Anime%29.png/revision/latest?cb=20210316185554" alt="Mai Zenin" style=""></div>
+                    <div class="card-footer"><h3>Mai Zenin</h3></div>
+                </div></div>
+
+    <div id="infoModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2 id="charName">Character</h2>
+            <p id="charDesc"></p>
+            <div class="btn-close" onclick="closeModal()">Закрити</div>
+        </div>
+    </div>
+
+    <script id="dataScript">
+        const baseCharacters = [
+    {
+        "id": "yuji",
+        "name": "Yuji Itadori",
+        "img": "https://i.ytimg.com/vi/JlPqvY2joUM/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBzGvxGEgazwsM8r2qoV2XzvaR9WA",
+        "desc": "Юджі Ітадорі посідає перше місце завдяки своєму неймовірному пробудженню в фіналі манги. Він опанував техніки 'Розріз' та 'Розсікання', а також навчився завдавати ударів безпосередньо по душі ворога, що робить його смертельним навіть для безсмертних істот. Його воля та здатність виконувати 'Чорні спалахи' за бажанням роблять його новим піком сили у світі магії."
+    },
+    {
+        "id": "gojo",
+        "name": "Satoru Gojo",
+        "img": "https://preview.redd.it/was-satoru-gojos-ultimate-goal-to-be-both-the-strongest-v0-dpzy86dhb3he1.jpeg?width=640&crop=smart&auto=webp&s=505f0d28689ceb9b070a8db2dc0906458a55fb20",
+        "desc": "Сатору Годжо — найсильніший маг сучасності, чия сила базується на техніках Безмежності та легендарних Шести Очах. Він здатен маніпулювати простором на атомному рівні, роблячи будь-яку атаку проти нього безглуздою. Його Територія 'Неосяжна Порожнеча' є миттєвим вироком для будь-якого розуму."
+    },
+    {
+        "id": "sukuna",
+        "name": "Ryomen Sukuna",
+        "img": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/18/15151sukuna29.jpg/revision/latest?cb=20250520125531&path-prefix=ru",
+        "customStyle": "object-position: center 20%;",
+        "desc": "Король Проклять ери Хеян, чия міць і знання магії не мають рівних в історії. Маючи чотири руки та дві пащі, він володіє колосальним запасом енергії та найпотужнішою відкритою Територією 'Гробниця Зла'. Його здатність адаптуватися до будь-якої ситуації та розрізати сам простір ставлять його на вершину ієрархії."
+    },
+    {
+        "id": "dabura",
+        "name": "Dabura",
+        "img": "https://preview.redd.it/do-you-think-dabura-will-carry-crossover-match-up-for-jjk-v0-3fhron8nue7g1.jpeg?width=640&crop=smart&auto=webp&s=aeeccd3e72e446afbd956c15251272fb2741f182",
+        "desc": "Король Світу Демонів. Його фізична міць та магічні здібності, такі як перетворення ворогів на камінь за допомогою слини, ставлять його на рівень найсильніших сутностей. Він представляє загрозу, що виходить за межі звичних законів магії."
+    },
+    {
+        "id": "yuta",
+        "name": "Yuta Okkotsu",
+        "img": "https://static0.colliderimages.com/wordpress/wp-content/uploads/2023/11/jujutsu-kaisen-season-1-yuta.jpg?w=1200&h=675&fit=crop",
+        "desc": "Маг особливого рангу з нескінченною енергією завдяки зв'язку з Рікою Орімото. Його головна сила полягає в здатності копіювати будь-які прокляті техніки, що робить його найбільш універсальним бійцем у світі."
+    },
+    {
+        "id": "mahoraga",
+        "name": "Mahoraga",
+        "img": "https://i.redd.it/e99r17yyf31c1.jpg",
+        "desc": "Найсильніший шикігамі з техніки Десяти Тіней. Його унікальна здатність до адаптації дозволяє йому ставати невразливим до будь-якої атаки після першого зіткнення. Це жива зброя, яку майже неможливо зупинити."
+    },
+    {
+        "id": "kashimo",
+        "name": "Hajime Kashimo",
+        "img": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/09/kashimo-cursed-technique-genju-kohasaku-jjk.jpg?w=1600&h=900&fit=crop",
+        "desc": "Бог Грому з ери Едо. Його проклята енергія має властивості електрики, а одноразова техніка 'Гендзю Кохасаку' перетворює його тіло на живу магічну енергію, даючи божественну швидкість."
+    },
+    {
+        "id": "toji",
+        "name": "Toji Fushiguro",
+        "img": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/1a/Toji_caught_in_Kuchisake-Onna%27s_domain_%28Anime%29.png/revision/latest?cb=20230727204527",
+        "desc": "Вбивця Магів із нульовою енергією в обмін на божественну фізичну досконалість. Небесне Обмеження зробило його найшвидшою людиною у світі, здатною повалити навіть найсильніших магів."
+    },
+    {
+        "id": "hakari",
+        "name": "Kinji Hakari",
+        "img": "https://preview.redd.it/why-does-this-sub-think-hakari-is-so-powerful-v0-ey8o9684emod1.jpeg?auto=webp&s=c8a70003bd53ffaadf819a90d43926169844d318",
+        "customStyle": "object-position: center 65%;",
+        "desc": "Азартний гравець, чия Територія дозволяє йому отримати Джекпот. Під час удачі він володіє нескінченною енергією та автоматичною Зворотною технікою, що робить його фактично безсмертним."
+    },
+    {
+        "id": "kenjaku",
+        "name": "Kenjaku",
+        "img": "https://preview.redd.it/lmao-kenjaku-got-backshots-from-jin-also-official-art-of-v0-acyzobhrr5cg1.jpeg?width=640&crop=smart&auto=webp&s=8ed4412ec70aaac5ac8477cadab9b58a80ef2008",
+        "desc": "Найвидатніший маніпулятор в історії магії. Володіючи відкритими Територіями та армією проклять, він стояв за всіма глобальними конфліктами протягом тисячі років."
+    },
+    {
+        "id": "hana",
+        "name": "Hana Kurusu",
+        "img": "https://i.pinimg.com/1200x/e3/6f/9f/e36f9f03481aa90abe9178c07d3e712d.jpg",
+        "desc": "Носій Ангела. Її техніка 'Сходи Якова' може анулювати будь-яку прокляту енергію або територію, що робить її ідеальним антиподом для найсильніших проклять світу."
+    },
+    {
+        "id": "higuruma",
+        "name": "Hiromi Higuruma",
+        "img": "https://i.pinimg.com/736x/d7/0e/2d/d70e2d37193bdbcd558d15961f0ff37a.jpg",
+        "desc": "Геній, що освоїв магію за лічені тижні. Його Територія 'Смертний Вирок' може конфіскувати сили ворога та засудити його до смерті Мечем Ката."
+    },
+    {
+        "id": "yorozu",
+        "name": "Yorozu",
+        "img": "https://i.pinimg.com/1200x/22/d7/6b/22d76be70357d89c427ce58fe44be6f7.jpg",
+        "customStyle": "object-position: center 35%;",
+        "desc": "Маг ери Хеян із досконалою технікою Створення. Її 'Ідеальна Сфера' створює нескінченний тиск, знищуючи будь-яку матерію при контакті."
+    },
+    {
+        "id": "yuki",
+        "name": "Yuki Tsukumo",
+        "img": "https://staticg.sportskeeda.com/editor/2023/12/6b724-17035046106825-1920.jpg?w=640",
+        "customStyle": "object-position: center 0%;",
+        "desc": "Маг особливого рангу, чия техніка 'Зоряна Лють' маніпулює віртуальною масою. Її удари ігнорують будь-який захист, а фінальна атака здатна створити чорну діру."
+    },
+    {
+        "id": "maki",
+        "name": "Maki Zenin",
+        "img": "https://is.zobj.net/image-server/v1/images?r=Dcc6vOYytcG5K_SLzPMLjx0hVjVTKwo2xHLcbFGkXbBPz4lCxuhHzQjC3NGt7XFRsVbRJVCDIrSZoTmzPzEx4qtN_Ul5gc_Oxmcg-tq3wuGL8jgerITSTu16ovlvia_lASQMG8uVbziDKYpJA-4NGSLUNKCCmd_xDv-1l16QiPxfvMmAa8KS7jOgxnTfh6ASf3Wnr0FxVxwNDVvDxUkmtqeHFjWCRfEZmeSKT7K1eMApxcT2u_zssZHMu6E",
+        "customStyle": "object-position: center 20%;",
+        "desc": "Пробуджена Макі досягла рівня досконалості Тодзі. Вона стала невидимою для Територій та здатна розсікати саму суть проклять своїм мечем."
+    },
+    {
+        "id": "naoya_cursed",
+        "name": "Naoya Zenin (Cursed)",
+        "img": "https://i.pinimg.com/736x/54/76/40/5476400eb08c3467d7627accda9586ec.jpg",
+        "desc": "У формі прокляття він досяг надзвукової швидкості. Його Територія паралізує ворога на клітинному рівні при найменшому русі тіла."
+    },
+    {
+        "id": "ryu",
+        "name": "Ryu Ishigori",
+        "img": "https://i.redd.it/random-weird-match-up-hanami-todo-vs-ryu-ishigori-v0-y622jgnm8ftc1.jpg?width=736&format=pjpg&auto=webp&s=e9384877322b1b6722a8cff49493fbee23d775dd",
+        "customStyle": "object-position: center 25%;",
+        "desc": "Маг із найвищим виходом енергії в історії. Його 'Гранітний Вибух' дозволяє вести бій на виснаження з найсильнішими опонентами."
+    },
+    {
+        "id": "dhruv",
+        "name": "Dhruv Lakdawalla",
+        "img": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/1/16/Dhruv_Lakdawalla.png/revision/latest?cb=20220221062845",
+        "customStyle": "object-position: center 35%;",
+        "desc": "Легендарний маг минулого, чия техніка створення бар'єрів за допомогою траєкторії руху шикігамі дозволяє контролювати цілі колонії."
+    },
+    {
+        "id": "geto",
+        "name": "Suguru Geto",
+        "img": "https://f4.bcbits.com/img/a4182498659_16.jpg",
+        "customStyle": "object-position: center 0%;",
+        "desc": "Маг особливого рангу, майстер маніпуляції прокляттями. Він здатний поглинати тисячі духів, перетворюючи їх на нищівний 'Вихор'."
+    },
+    {
+        "id": "jogo",
+        "name": "Jogo",
+        "img": "https://i.ytimg.com/vi/NHjS-jnfa7s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBzGvxGEgazwsM8r2qoV2XzvaR9WA",
+        "desc": "Прокляття вулканічного рівня. Його вогняна міць перевершує більшість магів 1-го рангу, а метеорити можуть стерти ціле місто."
+    },
+    {
+        "id": "choso",
+        "name": "Choso",
+        "img": "https://i.pinimg.com/1200x/01/4d/7b/014d7bed8cbbb430a6afb9e44833cc90.jpg",
+        "customStyle": "object-position: center 25%;",
+        "desc": "Майстер маніпуляції кров'ю. Його отруйна кров та техніка 'Надзвукового променя' роблять його смертельно небезпечним на дистанції."
+    },
+    {
+        "id": "takako",
+        "name": "Takako Uro",
+        "img": "https://i.pinimg.com/1200x/a2/11/c1/a211c1705df5d58c975dec648282808d.jpg",
+        "customStyle": "object-position: center 45%;",
+        "desc": "Маніпулює небом як матеріальною тканиною. Здатна відхиляти атаки та розбивати простір навколо ворога."
+    },
+    {
+        "id": "mahito",
+        "name": "Mahito",
+        "img": "https://i.pinimg.com/1200x/ea/a6/f2/eaa6f2465ac7c26dbcbeeddb9be4a3aa.jpg",
+        "customStyle": "width: 130%; height: 130%; margin-left: -15%; margin-top: -15%; object-fit: cover;",
+        "desc": "Прокляття ненависті. Здатність змінювати форму душі дозволяє йому вбивати одним дотиком та постійно еволюціонувати."
+    },
+    {
+        "id": "naoya_human",
+        "name": "Naoya Zenin (Human)",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMNJg8e-8vOHRPsPTueR7emZgQhH2znM6Qlgp7HiirJBkrcDXZphqrqeVO&s=10",
+        "customStyle": "object-position: center 15%;",
+        "desc": "Майстер 'Проекційної атаки'. Його швидкість робить його невловним для більшості магів нижчого рангу."
+    },
+    {
+        "id": "miguel",
+        "name": "Miguel",
+        "img": "https://i.redd.it/9egwga9huz0c1.jpg",
+        "desc": "Маг, що зупинив Годжо на кілька хвилин. «Между небом и земльой один я чернейший».",
+        "customStyle": "object-position: center 20%;"
+    },
+    {
+        "id": "dagon",
+        "name": "Dagon",
+        "img": "https://i.redd.it/dagon-will-be-voiced-by-kenta-miyake-v0-rkwlzyja9hwb1.jpg?width=1291&format=pjpg&auto=webp&s=c573d26ce763ca760bba29ea038ccfd79fb2ca2c",
+        "customStyle": "object-position: center 15%;",
+        "desc": "Прокляття океану з нескінченними шикігамі-вбивцями. Його територія — це смертельна пастка."
+    },
+    {
+        "id": "todo",
+        "name": "Todo Aoi",
+        "img": "https://www.dexerto.com/cdn-image/wp-content/uploads/2023/12/13/jujutsu-kaisen-aoi-todo.jpg?width=1200&quality=60&format=auto",
+        "desc": "Геній тактики з 530 000 IQ. Техніка 'Бугі-Вугі' дозволяє йому дезорієнтувати ворога миттєвим обміном місцями."
+    },
+    {
+        "id": "hanami",
+        "name": "Hanami",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHUWD2pHaCPEQlu_Xul_CZYeZfrRkzVcgQx7IwPfl3EIODz0KoxG2h_2s&s=10",
+        "desc": "Дух природи з найвищим захистом. Здатна поглинати енергію рослин для нескінченної стійкості у бою."
+    },
+    {
+        "id": "kusakabe",
+        "name": "Kusakabe",
+        "img": "https://static0.cbrimages.com/wordpress/wp-content/uploads/2024/03/kusakabe-jujutsu-kaisen.jpg?w=1200&h=900&fit=crop",
+        "desc": "Найсильніший маг 1-го рангу без техніки. Його майстерність володіння 'Простою Територією' дозволяє відбивати сильні атаки."
+    },
+    {
+        "id": "nanami",
+        "name": "Nanami Kento",
+        "img": "https://static0.srcdn.com/wordpress/wp-content/uploads/2024/02/kento-nanami-3.jpg?w=1200&h=675&fit=crop",
+        "desc": "Мастер критичних ударів 7:3. Кожен його удар несе руйнівну міць, незалежно від міцності ворога."
+    },
+    {
+        "id": "yuka",
+        "name": "Yuka Okkotsu",
+        "img": "https://i.pinimg.com/736x/36/31/7a/36317a5e9bcf34eb92acc8bda1822ee7.jpg",
+        "customStyle": "object-position: center 18%;",
+        "desc": "Маг із 'Модуля' з величезним спорідненням до енергії. Її потенціал робить її однією з найсильніших."
+    },
+    {
+        "id": "takaba",
+        "name": "Takaba Fumihiko",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTxM96n3RzYHYkoN8_WZ38dxPhPKY-abhHQsw8ONejxml70Z2xDi9ZbNo&s=10",
+        "desc": "Комік, чия уява стає реальністю. Поки йому смішно — він непереможний, навіть проти богів магії."
+    },
+    {
+        "id": "maru_brother",
+        "name": "Maru and Brother",
+        "img": "https://static.beebom.com/wp-content/uploads/2025/09/maru.jpg?w=1200&quality=75",
+        "desc": "Унікальний дует із 'Модуля'. Їхня сінергія та адаптація ставлять їх вище багатьох магів 1-го рангу."
+    },
+    {
+        "id": "megumi",
+        "name": "Megumi Fushiguro",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYqUMiU2k-t8ZK8DFTC7JT6ySCm3pcfXEElgRhN1ZqP0hGtxPJ7YSmSM&s=10",
+        "desc": "Користувач Десяти Тіней. Його потенціал та здатність маніпулювати простором через тіні роблять його майбутнім лідером."
+    },
+    {
+        "id": "tsurugi",
+        "name": "Tsurugi Okkotsu",
+        "img": "https://i.pinimg.com/736x/f2/5c/5f/f25c5f9b7d4f72e287fc6c1fbd8d67c0.jpg",
+        "desc": "Потужний воїн із 'Модуля' з техніками клану Оккоцу. Його стійкість у битвах перевірена найважчими випробуваннями."
+    },
+    {
+        "id": "muta",
+        "name": "Kokichi Muta",
+        "img": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/10/kokichi-smile.jpg",
+        "desc": "Керує армією маріонеток Мехамару. Його фінальна форма має запас енергії на рівні особливого рангу."
+    },
+    {
+        "id": "reggie",
+        "name": "Reggie Star",
+        "img": "https://i.ytimg.com/vi/FLaRut7SeY4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDZGdV_Wbc-iPVlGrviJ4qSVYzEWw",
+        "desc": "Матеріалізує об'єкти з чеків. Його винахідливість дозволяє йому скидати на ворога цілі будинки."
+    },
+    {
+        "id": "mei",
+        "name": "Mei Mei",
+        "img": "https://static0.srcdn.com/wordpress/wp-content/uploads/2024/02/img_8169.jpeg?q=49&fit=contain&w=1400&h=700&dpr=2",
+        "desc": "Мисливиця за грошима. Її техніка суїцидальних ворон 'Пташиний удар' — одна з найпотужніших атак."
+    },
+    {
+        "id": "kamo",
+        "name": "Noritoshi Kamo",
+        "img": "https://fictionhorizon.com/wp-content/uploads/2023/03/unnamed-file.webp",
+        "desc": "Спадкоємець Камо. Майстер маніпуляції кров'ю для посилення бойових навичок та стрільби."
+    },
+    {
+        "id": "yaga",
+        "name": "Masamichi Yaga",
+        "img": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/9/91/Masamichi_Yaga_and_his_dolls_%28Anime%29.png/revision/latest?cb=20201010033941",
+        "desc": "Директор коледжу, творець автономних трупів. Його знання вважалися загрозою для світового порядку."
+    },
+    {
+        "id": "gakuganji",
+        "name": "Yoshinobu Gakuganji",
+        "img": "https://static0.cbrimages.com/wordpress/wp-content/uploads/2022/08/4f973-16483006565853-1920_jpg-Cropped.jpg?q=50&fit=crop&w=825&dpr=1.",
+        "desc": "Використовує звукові хвилі гітари для атак. Посилює енергію через ритм, створюючи потужні вибухи."
+    },
+    {
+        "id": "charles",
+        "name": "Charles Bernard",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5ymF5PoCqZw3HhlYgrYeLyeozkJCOEpXWQVwsXt1SBVdlOYsWGQ9zpQQP&s=10",
+        "desc": "Мангака, що бачить майбутнє. Його поріз пером дозволяє передбачати кожен наступний рух ворога."
+    },
+    {
+        "id": "ino",
+        "name": "Ino Takuma",
+        "img": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/10/2923459325.jpg?q=50&fit=crop&w=825&dpr=1.5",
+        "desc": "Наступник Нанамі. Викликає сили чотирьох звірів для гнучкого стилю бою в будь-яких умовах."
+    },
+    {
+        "id": "nobara",
+        "name": "Nobara Kugisaki",
+        "img": "https://www.hindustantimes.com/ht-img/img/2023/09/06/550x309/nobara_jujutsu_kaisen_opening_1694000385772_1694000405444.png",
+        "desc": "Майстер резонансу. Атакує душу ворога через солом'яну ляльку, ігноруючи фізичний захист."
+    },
+    {
+        "id": "panda",
+        "name": "Panda",
+        "img": "https://wallpapercave.com/wp/wp9415208.jpg",
+        "desc": "Проклятий труп із трьома ядрами. Змінює бойовий режим для адаптації до будь-якої ситуації."
+    },
+    {
+        "id": "inumaki",
+        "name": "Inumaki Toge",
+        "img": "https://i.pinimg.com/736x/bf/1b/be/bf1bbe1bc0f232b7afe305c06d9fec8e.jpg",
+        "desc": "Користувач проклятої мови. Його слова стають непорушними наказами для самої реальності."
+    },
+    {
+        "id": "utahime",
+        "name": "Utahime Iori",
+        "img": "https://static0.cbrimages.com/wordpress/wp-content/uploads/2022/02/Utahime-combat-stance.jpg?w=1200&h=628&fit=crop",
+        "desc": "Маг підтримки. Її танець посилює енергію союзників навколо до неймовірних висот."
+    },
+    {
+        "id": "miwa",
+        "name": "Kasumi Miwa",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsLVM1nTwSJFatkAp-Jw8ykrHvsn4OSR6l3O48tDVZ-3IZFwpH6btP7I0&s=10",
+        "desc": "Майстер Простої Території. Її реакція дозволяє автоматично відбивати атаки в радіусі меча."
+    },
+    {
+        "id": "momo",
+        "name": "Momo Nishimiya",
+        "img": "https://preview.redd.it/happy-birthday-to-my-girl-momo-nishimiya-v0-8ac76nrq1hbf1.jpeg?width=640&crop=smart&auto=webp&s=1b74cc3c0417e87d75aabefe5a6a95140fa05fca",
+        "desc": "Повітряний розвідник. Керує вітром за допомогою мітли, забезпечуючи контроль поля бою."
+    },
+    {
+        "id": "hazenoki",
+        "name": "Iori Hazenoki",
+        "img": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/c/c8/Hazenoki_regenerates_his_left_eye.png/revision/latest?cb=20240211155944",
+        "desc": "Жива бомба. Підриває власні органи як гранати, миттєво регенеруючи їх через магію."
+    },
+    {
+        "id": "shoko",
+        "name": "Shoko Ieiri",
+        "img": "https://poggers.com/cdn/shop/articles/7f64580a0c11901281b0e97b782eb100_379da39b-27f3-4aee-847a-ece8cf32b00e_1200x600_crop_center.webp?v=1741278809",
+        "desc": "Головний медик. Єдина, хто може лікувати інших Зворотною технікою у великих масштабах."
+    },
+    {
+        "id": "shigemo",
+        "name": "Haruta Shigemo",
+        "img": "https://cdn.anisearch.de/images/character/screen/97/97781/full/624006.webp",
+        "desc": "Паразит удачі. Його техніка витрачає накопичені дива, рятуючи його від смерті."
+    },
+    {
+        "id": "nanako",
+        "name": "Nanako Hasaba",
+        "img": "https://i.pinimg.com/736x/d2/97/34/d29734882dedbc9bf55c47694f74e54c.jpg",
+        "desc": "Фото-маг. Здатна маніпулювати об'єктами або людьми, яких вона сфотографувала на свій телефон."
+    },
+    {
+        "id": "mimiko",
+        "name": "Mimiko Hasaba",
+        "img": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/e/e3/Mimiko_with_her_doll_%28Anime%29.png/revision/latest?cb=20231105204303",
+        "customStyle": "object-position: center 0%;",
+        "desc": "Сестра Нанако. Використовує зашморг та ляльку для дистанційного удушення ворогів магією."
+    },
+    {
+        "id": "mai",
+        "name": "Mai Zenin",
+        "img": "https://static.wikia.nocookie.net/jujutsu-kaisen/images/a/aa/Mai_taunts_her_rivals_from_Tokyo_%28Anime%29.png/revision/latest?cb=20210316185554",
+        "desc": "Снайпер клану. Здатна матеріалізувати реальну кулю на день, ігноруючи будь-яку броню."
+    }
+];
+
+        const grid = document.getElementById('rankingGrid');
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('jjkThemeGlass', isLight ? 'light' : 'dark');
+        }
+
+        function render() {
+            const savedOrder = JSON.parse(localStorage.getItem('jjkOrder_V7'));
+            let characters = baseCharacters;
+
+            if (savedOrder) {
+                characters = savedOrder.map(id => baseCharacters.find(c => c.id === id)).filter(Boolean);
+                baseCharacters.forEach(c => { if (!savedOrder.includes(c.id)) characters.push(c); });
+            }
+
+            grid.innerHTML = '';
+            characters.forEach((char, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.id = char.id;
+                
+                let imgUrl = char.img || 'https://via.placeholder.com/400x220/f0f0f0/cccccc?text=+';
+
+                card.innerHTML = `
+                    <div class="rank-badge">#${index + 1}</div>
+                    <div class="image-box"><img src="${imgUrl}" alt="${char.name}" style="${char.customStyle || ''}"></div>
+                    <div class="card-footer"><h3>${char.name}</h3></div>
+                `;
+                card.onclick = () => openModal(card, char.name, char.desc);
+                grid.appendChild(card);
+            });
+        }
+
+        function openModal(cardElement, name, desc) {
+            const currentRank = Array.from(grid.children).indexOf(cardElement) + 1;
+            document.getElementById('charName').innerText = `#${currentRank} ${name}`;
+            document.getElementById('charDesc').innerText = desc;
+            document.getElementById('infoModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function exportToFile() {
+            const currentIds = Array.from(grid.querySelectorAll('.card')).map(c => c.dataset.id);
+            const currentOrder = currentIds.map(id => baseCharacters.find(c => c.id === id));
+            let fullHtml = document.documentElement.outerHTML;
+            
+            const updatedData = `const baseCharacters = ${JSON.stringify(currentOrder, null, 4)};`;
+            fullHtml = fullHtml.replace(/const baseCharacters = \[[\s\S]*?\];/, updatedData);
+            
+            const blob = new Blob([fullHtml], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'JJK_Glass_Final.html';
+            link.click();
+        }
+
+        new Sortable(grid, {
+            animation: 350,
+            ghostClass: 'sortable-ghost',
+            onEnd: () => {
+                const newIds = Array.from(grid.querySelectorAll('.card')).map(c => c.dataset.id);
+                localStorage.setItem('jjkOrder_V7', JSON.stringify(newIds));
+                updateBadges();
+            }
+        });
+
+        function updateBadges() {
+            grid.querySelectorAll('.card').forEach((c, i) => c.querySelector('.rank-badge').innerText = `#${i + 1}`);
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        if (localStorage.getItem('jjkThemeGlass') === 'light') {
+            document.body.classList.add('light-mode');
+        } else {
+            document.body.classList.remove('light-mode');
+        }
+        
+        render();
+    </script>
+
+</body></html>
